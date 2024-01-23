@@ -13,9 +13,3 @@ local function test_format_all()
 end
 
 test_format_all()
-
-do
-    -- format all arguments to string
-    local s = format('hello %q', 'format', 'all')
-    print(s) -- > hello "format" all
-end
