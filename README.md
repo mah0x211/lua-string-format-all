@@ -1,7 +1,7 @@
 # lua-string-format-all
 
-[![test](https://github.com/mah0x211/lua-error/actions/workflows/test.yml/badge.svg)](https://github.com/mah0x211/lua-error/actions/workflows/test.yml)
-[![codecov](https://codecov.io/gh/mah0x211/lua-error/branch/master/graph/badge.svg)](https://codecov.io/gh/mah0x211/lua-error)
+[![test](https://github.com/mah0x211/lua-string-format-all/actions/workflows/test.yml/badge.svg)](https://github.com/mah0x211/lua-string-format-all/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/mah0x211/lua-string-format-all/branch/master/graph/badge.svg)](https://codecov.io/gh/mah0x211/lua-string-format-all)
 
 
 A submodule of the https://github.com/mah0x211/lua-string-format module.
