@@ -11,6 +11,7 @@ description = {
 }
 dependencies = {
     "lua >= 5.1",
+    "dump >= 0.1.2",
     "string-format >= 0.1.0",
 }
 build = {

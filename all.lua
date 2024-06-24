@@ -23,7 +23,9 @@
 local type = type
 local tostring = tostring
 local concat = table.concat
+local getmetatable = debug.getmetatable or getmetatable
 local format = require('string.format')
+local dump = require('dump')
 
 --- all formats arguments and returns a string.
 --- @param fmt string
@@ -35,7 +37,15 @@ local function all(fmt, ...)
         -- convert remaining arguments to string
         for i = 1, n do
             local v = unused[i]
-            if type(v) ~= 'string' then
+            local t = type(v)
+            if t == 'table' then
+                local mt = getmetatable(v)
+                if type(mt) ~= 'table' or not mt.__tostring then
+                    unused[i] = dump(v, 0)
+                else
+                    unused[i] = tostring(v)
+                end
+            elseif t ~= 'string' then
                 unused[i] = tostring(v)
             end
         end

@@ -17,6 +17,8 @@ luarocks install string-format-all
 
 converts the specified arguments to formatted output using `lua-string-format` module, and unused arguments are converted to string using `tostring` function and concatenated to the end of the formatted output.
 
+if an unused table argument does not have a `__tostring` metamethod, it will be converted to an expanded string representation of the table's contents.
+
 **Parameters**
 
 - `fmt:string`: the format string that describes the format of the output.
@@ -25,6 +27,7 @@ converts the specified arguments to formatted output using `lua-string-format` m
 **Returns**
 
 - `s:string`: the formatted output string.
+
 
 ## Usage
 
