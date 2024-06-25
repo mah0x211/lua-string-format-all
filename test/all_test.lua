@@ -11,6 +11,10 @@ local function test_format_all()
     s = format(123, 'hello world')
     assert.equal(s, '123 hello world')
 
+    -- test that return empty-string if no arguments
+    s = format()
+    assert.equal(s, '')
+
     -- test that unused arguments are concatenated to the end of the string
     s = format('hello %s', 'world', 'foo', nil, 'bar', nil, 'baz', nil)
     assert.equal(s, 'hello world foo nil bar nil baz nil')

@@ -20,6 +20,7 @@
 -- THE SOFTWARE.
 --
 --- assign to local
+local select = select
 local type = type
 local tostring = tostring
 local concat = table.concat
@@ -28,11 +29,10 @@ local format = require('string.format')
 local dump = require('dump')
 
 --- all formats arguments and returns a string.
---- @param fmt string
 --- @param ... any
 --- @return string
-local function all(fmt, ...)
-    local s, unused, n = format(fmt, ...)
+local function all(...)
+    local s, unused, n = format(...)
     if unused == nil then
         return s
     end
@@ -54,7 +54,7 @@ local function all(fmt, ...)
     end
 
     -- append unused arguments to the result string
-    if type(fmt) == 'string' then
+    if type(select(1, ...)) == 'string' then
         return s .. ' ' .. concat(unused, ' ')
     end
 
