@@ -33,25 +33,33 @@ local dump = require('dump')
 --- @return string
 local function all(fmt, ...)
     local s, unused, n = format(fmt, ...)
-    if unused ~= nil then
-        -- convert remaining arguments to string
-        for i = 1, n do
-            local v = unused[i]
-            local t = type(v)
-            if t == 'table' then
-                local mt = getmetatable(v)
-                if type(mt) ~= 'table' or not mt.__tostring then
-                    unused[i] = dump(v, 0)
-                else
-                    unused[i] = tostring(v)
-                end
-            elseif t ~= 'string' then
+    if unused == nil then
+        return s
+    end
+
+    -- convert remaining arguments to string
+    for i = 1, n do
+        local v = unused[i]
+        local t = type(v)
+        if t == 'table' then
+            local mt = getmetatable(v)
+            if type(mt) ~= 'table' or not mt.__tostring then
+                unused[i] = dump(v, 0)
+            else
                 unused[i] = tostring(v)
             end
+        elseif t ~= 'string' then
+            unused[i] = tostring(v)
         end
-        s = s .. ' ' .. concat(unused, ' ')
     end
-    return s
+
+    -- append unused arguments to the result string
+    if type(fmt) == 'string' then
+        return s .. ' ' .. concat(unused, ' ')
+    end
+
+    -- ignore the result string if fmt is not a string
+    return concat(unused, ' ')
 end
 
 return all

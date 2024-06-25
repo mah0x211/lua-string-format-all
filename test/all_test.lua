@@ -7,6 +7,10 @@ local function test_format_all()
     local s = format('hello world')
     assert.equal(s, 'hello world')
 
+    -- test that first argument can be non-string value
+    s = format(123, 'hello world')
+    assert.equal(s, '123 hello world')
+
     -- test that unused arguments are concatenated to the end of the string
     s = format('hello %s', 'world', 'foo', nil, 'bar', nil, 'baz', nil)
     assert.equal(s, 'hello world foo nil bar nil baz nil')
